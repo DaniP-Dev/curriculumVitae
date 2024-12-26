@@ -1,13 +1,10 @@
-
 import React from "react";
 
 const Sidebar = () => {
   return (
-    <>
-      <div className="bg-blue-500 w-10 h-screen top-16 sticky">
-        hola
-      </div>
-    </>
+    <aside className="bg-blue-500 w-16 sticky top-0 h-screen">
+      hola
+    </aside>
   );
 };
 

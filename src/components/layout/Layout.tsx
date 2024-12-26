@@ -4,17 +4,15 @@ import Sidebar from "./Sidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
-      <div>
-        <Navbar />
-        <div className="flex">
-          <Sidebar />
-          <div className="flex-1 overflow-y-auto max-h-screen">
-            {children}
-          </div>
-        </div>
+    <div className="h-screen flex flex-col">
+      <Navbar />
+      <div className="flex flex-1 overflow-hidden">
+        <Sidebar />
+        <main className="flex-1 relative">
+          {children}
+        </main>
       </div>
-    </>
+    </div>
   );
 };
 

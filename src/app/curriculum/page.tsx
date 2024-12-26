@@ -1,11 +1,14 @@
+"use client";
 import ContentPage from '@/components/layout/ContentPage';
 import Layout from '@/components/layout/Layout';
-import React from 'react';
+import React, { useRef } from 'react';
 
-const pageCurriculum = () => {
+const PageCurriculum = () => {
+    const pageRef = useRef<HTMLDivElement>(null);
+
     return (
         <Layout>
-            <div className='flex-col'>
+            <div className='h-screen overflow-y-auto snap-y snap-mandatory'>
                 <ContentPage>
                     hola contete
                 </ContentPage>
@@ -17,4 +20,4 @@ const pageCurriculum = () => {
     );
 };
 
-export default pageCurriculum;
+export default PageCurriculum;
