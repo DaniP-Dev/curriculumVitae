@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <div className="h-screen overflow-y-auto snap-y snap-mandatory">
         <ContentPage>hola</ContentPage>
-        <ContentPage>sgundo hola</ContentPage>
+        <ContentPage bgcolor="bg-blue-500">sgundo hola</ContentPage>
       </div>
     </>
   );

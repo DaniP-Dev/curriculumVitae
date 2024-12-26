@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 
-const ContentPage = ({ children }: { children: React.ReactNode }) => {
+const ContentPage = ({ children, bgcolor }: { children: React.ReactNode, bgcolor?: string }) => {
   const pageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const ContentPage = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       ref={pageRef}
-      className="min-h-screen w-full snap-start bg-green-500 flex items-center justify-center"
+      className={`min-h-screen w-full snap-start ${bgcolor} flex items-center justify-center`}
     >
       {children}
     </div>
