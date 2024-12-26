@@ -1,5 +1,4 @@
 import ContentPage from "@/components/layout/ContentPage";
-import Layout from "@/components/layout/Layout";
 import Image from "next/image";
 
 export default function Home() {
