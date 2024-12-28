@@ -1,51 +1,101 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const sidebarButtons = [
   {
     id: "btn1",
-    label: "Button 1",
-    emoji: "🚀",
-    onClick: () => alert("Button 1 clicked!"),
+    label: "primer boton",
+    icono: "🚀",
+    onClick: () => alert("boton 1"),
   },
   {
     id: "btn2",
-    label: "Button 2",
-    emoji: "🔥",
-    onClick: () => alert("Button 2 clicked!"),
+    label: "segundo boton",
+    icono: "🔥",
+    onClick: () => alert("boton 2"),
   },
 ];
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
+  const btnOpen = () => {
+    setOpenSidebar(!openSidebar);
   };
 
-  return (
-    <aside
-      className={`bg-blue-500 ${
-        isOpen ? "w-40" : "w-10"
-      } sticky top-0 h-screen transition-width duration-150 flex flex-col items-center`}
-    >
-      <button
-        onClick={toggleSidebar}
-        className="flex items-center justify-center mb-4 w-full hover:bg-blue-700"
-      >
-        <span className="w-8 flex justify-center">☰</span>
-      </button>
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      sidebarRef.current &&
+      !sidebarRef.current.contains(event.target as Node)
+    ) {
+      setOpenSidebar(false);
+    }
+  };
 
-      {sidebarButtons.map((button) => (
-        <button
-          key={button.id}
-          onClick={button.onClick}
-          className="mb-2 w-full flex items-center hover:bg-blue-700"
-        >
-          <span className="w-8 flex justify-center mb-2 ">{button.emoji}</span>
-          {isOpen && <span className="flex-1 text-center ">{button.label}</span>}
+  const handleButtonClick = (onClick: () => void) => {
+    setOpenSidebar(false);
+    setTimeout(() => {
+      onClick();
+    }, 101);
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <>
+      <div className="flex flex-col bg-primary" ref={sidebarRef}>
+        <button onClick={btnOpen} className="p-2 hover:bg-accent">
+          {openSidebar ? "←" : "→"}
         </button>
-      ))}
-    </aside>
+
+        <aside className="flex h-screen">
+          <div className="w-10 flex flex-col bg-primary">
+            {sidebarButtons.map((button) => (
+              <button
+                key={button.id}
+                className={`p-2 hover:bg-accent ${
+                  openSidebar ? "" : "hover:bg-accent"
+                }`}
+                onClick={() => handleButtonClick(button.onClick)}
+              >
+                {button.icono}
+              </button>
+            ))}
+          </div>
+
+          <div
+            className={`bg-secondary transition-all duration-100 ${
+              openSidebar ? "w-[10rem]" : "w-0"
+            }`}
+          >
+            <div className="">
+              {sidebarButtons.map((button) => (
+                <button
+                  key={button.id}
+                  className={`flex py-2 h-10 w-full justify-center hover:bg-accent ${
+                    openSidebar ? "w-40" : "w-0"
+                  } `}
+                >
+                  {openSidebar && (
+                    <div
+                      className="transition-all duration-300"
+                      onClick={() => handleButtonClick(button.onClick)}
+                    >
+                      {button.label}
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </>
   );
 };
 
