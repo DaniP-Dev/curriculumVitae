@@ -8,7 +8,7 @@ const PageCurriculum = () => {
 
     return (
         <Layout>
-            <div className='h-screen overflow-y-auto snap-y snap-mandatory'>
+            <div className='h-[100dvh] overflow-y-auto snap-y snap-mandatory'>
                 <ContentPage bgcolor='bg-pink-500'>
                     hola contete
                 </ContentPage>

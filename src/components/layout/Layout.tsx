@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-[100dvh] flex flex-col">
       <Navbar />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />

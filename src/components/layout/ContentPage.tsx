@@ -31,7 +31,7 @@ const ContentPage = ({ children, bgcolor }: { children: React.ReactNode, bgcolor
   return (
     <div
       ref={pageRef}
-      className={`min-h-screen w-full snap-start ${bgcolor} flex items-center justify-center`}
+      className={`min-h-[100dvh] w-full snap-start ${bgcolor} flex items-center justify-center`}
     >
       {children}
     </div>
